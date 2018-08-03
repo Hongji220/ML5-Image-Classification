@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>-->
+<script src="https://unpkg.com/ml5@0.1.1/dist/ml5.min.js"></script>
+<title>Ml5 Image classificationk</title>
+</head>
+
+<body>
+    <p>The MobileNet model labeled this as
+    <span id="result">...</span> with a confidence of
+    <span id="probability">...</span></p>
+<image src="images/dog.jpg" id="image"></image>
+</body>
+<script src= "sketch.js" ></script>
+</html>
