@@ -1,4 +1,13 @@
-// The image we want to classify
+classifier.predict(image, function(err, results) {
+        result.innerText = results[0].className;
+        probability.innerText = results[0].probability.toFixed(4);
+      });classifier.predict(image, function(err, results) {
+        result.innerText = results[0].className;
+        probability.innerText = results[0].probability.toFixed(4);
+      });classifier.predict(image, function(err, results) {
+        result.innerText = results[0].className;
+        probability.innerText = results[0].probability.toFixed(4);
+      });// The image we want to classify
       const image = document.getElementById('image');
       // The result tag in the HTML
       const result = document.getElementById('result');
