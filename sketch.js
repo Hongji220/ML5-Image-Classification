@@ -6,6 +6,8 @@ let image1;
 
 function modelReady() {
 
+  console.log(image1);
+
   console.log('Model is ready!!!');
 
   mobilenet.predict(image1, gotResults);
@@ -55,6 +57,8 @@ function setup() {
   image1.hide();
 
   background(0);
+  
+  console.log(image1);
 
   mobilenet = ml5.imageClassifier('MobileNet', modelReady);
 

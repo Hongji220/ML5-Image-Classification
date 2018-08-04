@@ -17,9 +17,11 @@
 	<script src="sketch.js"></script>
 </head>
 <body>
-	<div id="wrapper" style="margin-top: 20px;">
-	<input id="fileUpload" multiple="multiple" type="file"/> <br>
-<div id="image-holder"></div><br>
-</div>
+	<!-- <div id="wrapper" style="margin-top: 20px;">
+	<input id="fileUpload" type="file" onchange="readURL(this);"/> <br> -->
+	<input type='file' onchange="readURL(this);" /> <br style="margin:20px;"><br style="margin:20px;">
+    <img id="image-holder" src="images/dog.jpg" alt="your image" />
+
+<!-- </div> -->
 </body>
 </html>
