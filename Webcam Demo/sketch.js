@@ -19,9 +19,9 @@ function gotResults(error, results) {
     let label = results[0].className;
     let prob = results[0].probability.toFixed(3)*100 + "%";
     
-
+/*
     createP(label);
-    createP(prob);
+    createP(prob);*/
     mobilenet.predict(gotResults);
 
   }
@@ -43,7 +43,8 @@ function setup() {
 
 function draw() {
   image(video, 0 , 0);
-  fill(0);
+  fill(255);
   textSize(25);
   text(label, 10 , height-20);
+  text(prob, 10 , 10);
 }
