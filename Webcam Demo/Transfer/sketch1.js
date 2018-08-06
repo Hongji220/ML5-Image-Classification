@@ -53,7 +53,7 @@ function setupButtons() {
 	buttonA = createButton("Add Image");
 	buttonA.mousePressed(function() {
 		classifier.addImage('Person1');
-		select("#amount").html(personImages++ + "Images")
+		select("#amount").html(personImages++ + "Images");
 	})
 	
 	trainButton = createButton("Train");
@@ -65,12 +65,12 @@ function setupButtons() {
 			} else {
 						 console.log("Done Training! Final Loss: " + loss );
 		createP("Done Training!")
-						 });
+						 };
 	});
 	
 	buttonPredict = createButton("Predict").id("predictButton");
-	buttonPredict.mousePressed(classify())
-	}
+	buttonPredict.mousePressed(classify());
+	});}
 
 function classify() {
 	classifier.classify(gotResults);
@@ -84,5 +84,5 @@ function draw() {
   fill(255);
   textSize(32);
   text(label, 10, height - 20);
-  text(prob, 10, 30);
+  text(prob, 10, 30); 
 }
