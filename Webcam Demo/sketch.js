@@ -18,8 +18,8 @@ function gotResults(error, results) {
     console.error(error);
   } else {
     //console.log(results);
-    let label = results[0].className;
-    let prob = results[0].probability.toFixed(3)*100 + "%";
+    label = results[0].className;
+    prob = results[0].probability.toFixed(3)*100 + "%";
     
 /*
     createP(label);
@@ -45,7 +45,7 @@ function setup() {
 
 function draw() {
   image(video, 0 , 0);
-   fill(255);
+  fill(255);
   textSize(32);
   text(label, 10, height - 20);
   text(prob, width - 10, height - 20);
