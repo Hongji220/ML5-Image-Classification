@@ -37,14 +37,14 @@ function setup() {
   video.hide(); 
   background(0);
   mobilenet = ml5.imageClassifier('MobileNet', video , modelReady);
-  createP().id("classname");
-  createP().id("prob");
+/*  createP().id("classname");
+  createP().id("prob");*/
 }
 
 function draw() {
   image(video, 0 , 0);
-  fill(255);
-  textSize(25);
-  text(label, 10 , height-20);
-  text(prob, 10 , 10);
+   fill(255);
+  textSize(32);
+  text(label, 10, height - 20);
+  text(prob, width - 10, height - 20);
 }
