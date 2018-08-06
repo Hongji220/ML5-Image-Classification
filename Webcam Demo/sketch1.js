@@ -1,14 +1,18 @@
-let mobilenet;
-
 let video;
-
 let label = '';
+let featureExtractor; //This will be the the model we are retraining.
+let classifier; // This will be the classifier using the retrained Model.
+let loss;
+let personImages =0;
+let buttonA;
+let trainButton;
+let predictButton;
 
-let prob = '';
+
+
 
 function modelReady() {
   console.log('Model is ready!!!');
-  mobilenet.predict(gotResults);
 }
 
 
@@ -18,31 +22,63 @@ function gotResults(error, results) {
     console.error(error);
   } else {
     //console.log(results);
-    label = results[0].className;
-    prob = results[0].probability.toFixed(3)*100 + "%";
+    label = results;
     
-/*
-    createP(label);
-    createP(prob);*/
-    mobilenet.predict(gotResults);
+    classify();
 
   }
 
 }
 
 
-
-
 function setup() {
   createCanvas(640,550);
   video = createCapture(VIDEO , function() {console.log("Video Ready!")});
-  video.hide(); 
-  background(0);
-  mobilenet = ml5.imageClassifier('MobileNet', video , modelReady);
-/*  createP().id("classname");
-  createP().id("prob");*/
+  video.hide();
+// Extracting the pre-learned features from MobileNet
+  featureExtractor = ml5.featureExtractor('MobileNet', modelReady);
+// Create a new classifier using those Features and link it to the video
+  classifier = featureExtractor.classification(video, function() {console.log("Video Ready!")})
+  
+  createP("0 Images").id("amount");
+  
+  setupButtons();
+  
+
 }
 
+//Creating new buttons when j
+function setupButtons() {
+	
+	buttonA = createButton("Add Image");
+	buttonA.mousePressed(function() {
+		classifier.addImage('Person1');
+		select("#amount").html(personImages++ + "Images")
+	})
+	
+	trainButton = createButton("Train");
+	trainButton.mousePressed(function() {
+		classifier.train(function(lossValue){
+			if (lossValue) {
+				loss = lossValue;
+				console.log("Loss: " + loss);
+			}
+		} else {
+						 console.log("Done Training! Final Loss: " + loss );
+		createP("Done Training!")
+						 });
+	});
+	
+	buttonPredict = createButton("Predict").id("predictButton");
+	buttonPredict.mousePressed(classify())
+	}
+
+function classify() {
+	classifier.classify(gotResults);
+}
+	
+	
+	
 function draw() {
   background(0);
   image(video, 0 , 0);
