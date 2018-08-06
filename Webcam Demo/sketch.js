@@ -4,6 +4,8 @@ let video;
 
 let label = '';
 
+let prob = '';
+
 function modelReady() {
   console.log('Model is ready!!!');
   mobilenet.predict(gotResults);
