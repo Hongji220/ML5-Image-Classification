@@ -62,8 +62,7 @@ function setupButtons() {
 			if (lossValue) {
 				loss = lossValue;
 				console.log("Loss: " + loss);
-			}
-		} else {
+			} else {
 						 console.log("Done Training! Final Loss: " + loss );
 		createP("Done Training!")
 						 });
