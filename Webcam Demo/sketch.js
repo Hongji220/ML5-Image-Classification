@@ -48,5 +48,5 @@ function draw() {
   fill(255);
   textSize(32);
   text(label, 10, height - 20);
-  text(prob, width - 10, height - 20);
+  text(prob, 10, 30);
 }
