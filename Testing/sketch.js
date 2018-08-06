@@ -3,9 +3,8 @@ let mobilenet;
 let image1;
 
 
-function modelReady() {
 
-  let image1 = select("#image-holder");
+function modelReady() {
 
   console.log('Model is ready!!!');
 
@@ -22,8 +21,6 @@ function gotResults(error, results) {
     console.error(error);
 
   } else {
-
-    console.log(results);
 
     let label = results[0].className;
 
@@ -42,11 +39,19 @@ function gotResults(error, results) {
 
 function setup() {
 
-  noCanvas();
+  createCanvas(850,566);
 
-  let image1 = select("#image-holder");
+/*  let image1 = select("#image-holder");
+  
+  image1.hide();*/
 
-    console.log(image1);
+  image1 = createImg("images/penguin.jpg").id("image-holder1");
+	
+  image1.hide();
+
+  console.log(image1);
+
+  console.log("Loading...");
 
   mobilenet = ml5.imageClassifier('MobileNet', modelReady);
 
@@ -56,12 +61,20 @@ function setup() {
 
 }
 
+function draw() {
+/*	let image1 = select("#image-holder");*/
+	
+	image(image1, 0 ,0 , width, height );
+}
+
+
+
 function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#image-holder')
+                $('#image-holder1')
                     .attr('src', e.target.result)
             };
 
