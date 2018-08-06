@@ -33,7 +33,7 @@ function gotResults(error, results) {
 
 function setup() {
   createCanvas(640,550);
-  video = createCapture(VIDEO , function() {console.log("Video Ready!")});
+  video = createCapture(VIDEO);
   video.hide();
 // Extracting the pre-learned features from MobileNet
   featureExtractor = ml5.featureExtractor('MobileNet', modelReady);
