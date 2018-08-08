@@ -4,7 +4,7 @@ let status;
 let objects = [];
 
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(720	, 576);
   frameRate(60);
   video = createCapture(VIDEO);
 
