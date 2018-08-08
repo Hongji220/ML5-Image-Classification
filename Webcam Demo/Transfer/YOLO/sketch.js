@@ -4,7 +4,7 @@ let status;
 let objects = [];
 
 function setup() {
-  createCanvas(720, 576);
+  createCanvas(640, 480);
   video = createCapture(VIDEO);
 
   // Create a YOLO method
@@ -16,7 +16,7 @@ function setup() {
 }
 
 function draw() {
-  image(video, 0, 0, 720, 576);
+  image(video, 0, 0, width, height);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
     fill(0, 255, 0);
