@@ -12,7 +12,7 @@ function setup() {
   
   // Hide the original video
   video.hide();
-  status = createP().id("#status")
+  status = createP("Model is Loading...").id("#status")
 }
 
 function draw() {
