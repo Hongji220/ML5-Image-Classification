@@ -3,7 +3,8 @@ let label = '';
 let featureExtractor; //This will be the the model we are retraining.
 let classifier; // This will be the classifier using the retrained Model.
 let loss;
-let personImages =0;
+let person1Images =0;
+let person2Images =0;
 let buttonA;
 let buttonB;
 let trainButton;
@@ -56,13 +57,13 @@ function setupButtons() {
 	buttonA = createButton("The first Person");
 	buttonA.mousePressed(function() {
 		classifier.addImage('Person1');
-		select("#amount").html(++personImages + " Images");
+		select("#amount").html(++person1Images + " Images");
 	})
 	
 	buttonB = createButton("The Second Person")
 		buttonA.mousePressed(function() {
 		classifier.addImage('Person2');
-		select("#amount1").html(++personImages + " Images");
+		select("#amount1").html(++person2Images + " Images");
 	})
 	
 	trainButton = createButton("Train");
