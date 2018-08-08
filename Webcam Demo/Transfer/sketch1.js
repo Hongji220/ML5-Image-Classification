@@ -35,6 +35,7 @@ function setup() {
   createCanvas(640,550);
   video = createCapture(VIDEO);
   video.hide();
+  background(0);
 // Extracting the pre-learned features from MobileNet
   featureExtractor = ml5.featureExtractor('MobileNet', modelReady);
 // Create a new classifier using those Features and link it to the video
@@ -53,7 +54,7 @@ function setupButtons() {
 	buttonA = createButton("Add Image");
 	buttonA.mousePressed(function() {
 		classifier.addImage('Person1');
-		select("#amount").html(personImages++ + "Images");
+		select("#amount").html(++personImages + " Images");
 	})
 	
 	trainButton = createButton("Train");
