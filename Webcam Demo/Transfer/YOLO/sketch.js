@@ -17,7 +17,7 @@ function setup() {
 }
 
 function draw() {
-  image(video, 0, 0, height, 480);
+  image(video, 0, 0, height, width);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
     fill(0, 255, 0);
