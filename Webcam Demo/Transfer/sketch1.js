@@ -79,8 +79,8 @@ function setupButtons() {
 	});
 	
 	});
-	buttonPredict = createButton("Predict").id("predictButton");
-	buttonPredict.mousePressed(classify());
+	predictButton = createButton("Predict").id("predictButton");
+	predictButton.mousePressed(classify());
 }
 
 function classify() {
