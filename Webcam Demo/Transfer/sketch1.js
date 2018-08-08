@@ -26,7 +26,7 @@ function gotResults(error, results) {
     //console.log(results);
     label = results;
     
-    classify();
+    classifier.classify(gotResults);
 
   }
 
