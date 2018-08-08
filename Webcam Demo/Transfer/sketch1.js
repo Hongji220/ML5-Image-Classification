@@ -74,13 +74,14 @@ function setupButtons() {
 				console.log("Loss: " + loss);
 			} else {
 						 console.log("Done Training! Final Loss: " + loss );
-		createP("Done Training!")
+		createP("Done Training! Final Loss: " + loss );
 						 };
 	});
 	
+	});
 	buttonPredict = createButton("Predict").id("predictButton");
 	buttonPredict.mousePressed(classify());
-	});}
+}
 
 function classify() {
 	classifier.classify(gotResults);
