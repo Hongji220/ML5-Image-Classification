@@ -5,6 +5,7 @@ let classifier; // This will be the classifier using the retrained Model.
 let loss;
 let personImages =0;
 let buttonA;
+let buttonB;
 let trainButton;
 let predictButton;
 
@@ -51,9 +52,15 @@ function setup() {
 //Creating new buttons when j
 function setupButtons() {
 	
-	buttonA = createButton("Add Image");
+	buttonA = createButton("The first Person");
 	buttonA.mousePressed(function() {
 		classifier.addImage('Person1');
+		select("#amount").html(++personImages + " Images");
+	})
+	
+	buttonB = createButton("The Second Person")
+		buttonA.mousePressed(function() {
+		classifier.addImage('Person2');
 		select("#amount").html(++personImages + " Images");
 	})
 	
