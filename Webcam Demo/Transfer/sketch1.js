@@ -1,10 +1,10 @@
 let video;
-let label = '';
+let label = "";
 let featureExtractor; //This will be the the model we are retraining.
 let classifier; // This will be the classifier using the retrained Model.
 let loss;
-let person1Images =0;
-let person2Images =0;
+let personImages1 =0;
+let personImages2 =0;
 let buttonA;
 let buttonB;
 let trainButton;
@@ -51,20 +51,22 @@ function setup() {
 
 }
 
+
+
 //Creating new buttons when j
 function setupButtons() {
 	
 	buttonA = createButton("The first Person");
 	buttonA.mousePressed(function() {
 		classifier.addImage('Person1');
-		select("#amount").html(++person1Images + " Images");
+		select("#amount").html(++personImages1 + " Images [Person 1]");
 	})
 	
-	buttonB = createButton("The Second Person")
-		buttonA.mousePressed(function() {
+	buttonB = createButton("\nThe Second Person")
+	buttonB.mousePressed(function() {
 		classifier.addImage('Person2');
-		select("#amount1").html(++person2Images + " Images");
-	})
+		select("#amount1").html(++personImages2 + " Images [Person 2]");
+	});
 	
 	trainButton = createButton("Train");
 	trainButton.mousePressed(function() {
@@ -75,17 +77,16 @@ function setupButtons() {
 			} else {
 						 console.log("Done Training! Final Loss: " + loss );
 		createP("Done Training! Final Loss: " + loss );
-						 };
-	});
+						 }
+	});});
 	
-	});
 	predictButton = createButton("Predict").id("predictButton");
-	predictButton.mousePressed(classify());
+	predictButton.mousePressed(function() {
+	classifier.classify(gotResults);
+});
 }
 
-function classify() {
-	classifier.classify(gotResults);
-}
+
 	
 	
 	
