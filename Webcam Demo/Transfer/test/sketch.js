@@ -1,82 +1,64 @@
-let featureExtractor;
-let classifier;
 let video;
-let loss;
-let dogImages = 0;
-let catImages = 0;
+let poseNet;
+let poses = [];
+let skeletons = [];
 
 function setup() {
-  noCanvas();
-  // Create a video element
+  createCanvas(640, 480);
   video = createCapture(VIDEO);
-  // Append it to the videoContainer DOM element
-  video.parent('videoContainer');
-  // Extract the already learned features from MobileNet
-  featureExtractor = ml5.featureExtractor('MobileNet', modelReady);
-  // Create a new classifier using those features and give the video we want to use
-  classifier = featureExtractor.classification(video, videoReady);
-  // Set up the UI buttons
-  setupButtons();
+  video.size(width, height);
+
+  // Create a new poseNet method with a single detection
+  poseNet = ml5.poseNet(video, modelReady);
+  // This sets up an event that fills the global variable "poses"
+  // with an array every time new poses are detected
+  poseNet.on('pose', function (results) {
+    poses = results;
+  });
+  // Hide the video element, and just show the canvas
+  video.hide();
 }
 
-// A function to be called when the model has been loaded
 function modelReady() {
-  select('#modelStatus').html('Base Model (MobileNet) loaded!');
+  select('#status').html('Model Loaded');
 }
 
-// A function to be called when the video has loaded
-function videoReady () {
-  select('#videoStatus').html('Video ready!');
+function draw() {
+  image(video, 0, 0, width, height);
+
+  // We can call both functions to draw all keypoints and the skeletons
+  drawKeypoints();
+  drawSkeleton();
 }
 
-
-// Classify the current frame.
-function classify() {
-  classifier.classify(gotResults);
-}
-
-// A util function to create UI buttons
-function setupButtons() {
-  // When the Cat button is pressed, add the current frame
-  // from the video with a label of "cat" to the classifier
-  buttonA = select('#catButton');
-  buttonA.mousePressed(function() {
-    classifier.addImage('cat');
-    select('#amountOfCatImages').html(catImages++);
-  });
-
-  // When the Dog button is pressed, add the current frame
-  // from the video with a label of "dog" to the classifier
-  buttonB = select('#dogButton');
-  buttonB.mousePressed(function() {
-    classifier.addImage('dog');
-    select('#amountOfDogImages').html(dogImages++);
-  });
-
-  // Train Button
-  train = select('#train');
-  train.mousePressed(function() {
-    classifier.train(function(lossValue) {
-      if (lossValue) {
-        loss = lossValue;
-        select('#loss').html('Loss: ' + loss);
-      } else {
-        select('#loss').html('Done Training! Final Loss: ' + loss);
+// A function to draw ellipses over the detected keypoints
+function drawKeypoints()  {
+  // Loop through all the poses detected
+  for (let i = 0; i < poses.length; i++) {
+    // For each pose detected, loop through all the keypoints
+    for (let j = 0; j < poses[i].pose.keypoints.length; j++) {
+      // A keypoint is an object describing a body part (like rightArm or leftShoulder)
+      let keypoint = poses[i].pose.keypoints[j];
+      // Only draw an ellipse is the pose probability is bigger than 0.2
+      if (keypoint.score > 0.2) {
+        fill(255, 0, 0);
+        noStroke();
+        ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
       }
-    });
-  });
-
-  // Predict Button
-  buttonPredict = select('#buttonPredict');
-  buttonPredict.mousePressed(classify);
+    }
+  }
 }
 
-// Show the results
-function gotResults(err, result) {
-  // Display any error
-  if (err) {
-    console.error(err);
+// A function to draw the skeletons
+function drawSkeleton() {
+  // Loop through all the skeletons detected
+  for (let i = 0; i < poses.length; i++) {
+    // For every skeleton, loop through all body connections
+    for (let j = 0; j < poses[i].skeleton.length; j++) {
+      let partA = poses[i].skeleton[j][0];
+      let partB = poses[i].skeleton[j][1];
+      stroke(255, 0, 0);
+      line(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
+    }
   }
-  select('#result').html(result);
-  classify();
 }
