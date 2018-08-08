@@ -4,8 +4,7 @@ let status;
 let objects = [];
 
 function setup() {
-  createCanvas(720	, 576);
-  frameRate(60);
+  createCanvas(640, 480);
   video = createCapture(VIDEO);
 
   // Create a YOLO method
@@ -13,11 +12,11 @@ function setup() {
   
   // Hide the original video
   video.hide();
-  status = createP("Model is Loading...").id("#status")
+  status = select('#status');
 }
 
 function draw() {
-  image(video, 0, 0, height, width);
+  image(video, 0, 0, 640, 480);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
     fill(0, 255, 0);
@@ -36,12 +35,7 @@ function startDetecting() {
 
 function detect() {
   yolo.detect(function(err, results){
-	if (err) {
-		console.error(err);
-	}
-	  else {
     objects = results;
     detect();
-	  } 
   });
 }
