@@ -5,6 +5,7 @@ let objects = [];
 
 function setup() {
   createCanvas(640, 480);
+  frameRate(60);
   video = createCapture(VIDEO);
 
   // Create a YOLO method
