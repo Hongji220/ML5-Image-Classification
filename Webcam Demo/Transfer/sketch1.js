@@ -43,6 +43,7 @@ function setup() {
   classifier = featureExtractor.classification(video, function() {console.log("Video Ready!")})
   
   createP("0 Images").id("amount");
+  createP("0 Images").id("amount1");
   
   setupButtons();
   
@@ -61,7 +62,7 @@ function setupButtons() {
 	buttonB = createButton("The Second Person")
 		buttonA.mousePressed(function() {
 		classifier.addImage('Person2');
-		select("#amount").html(++personImages + " Images");
+		select("#amount1").html(++personImages + " Images");
 	})
 	
 	trainButton = createButton("Train");
