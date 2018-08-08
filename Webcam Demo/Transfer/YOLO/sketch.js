@@ -1,64 +1,46 @@
 let video;
-let poseNet;
-let poses = [];
-let skeletons = [];
+let yolo;
+let status;
+let objects = [];
 
 function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
-  video.size(width, height);
 
-  // Create a new poseNet method with a single detection
-  poseNet = ml5.poseNet(video, modelReady);
-  // This sets up an event that fills the global variable "poses"
-  // with an array every time new poses are detected
-  poseNet.on('pose', function (results) {
-    poses = results;
-  });
-  // Hide the video element, and just show the canvas
+  // Create a YOLO method
+  yolo = ml5.YOLO(video, startDetecting);
+  
+  // Hide the original video
   video.hide();
-}
-
-function modelReady() {
-  select('#status').html('Model Loaded');
+  status = createP().id("#status")
 }
 
 function draw() {
-  image(video, 0, 0, width, height);
-
-  // We can call both functions to draw all keypoints and the skeletons
-  drawKeypoints();
-  drawSkeleton();
-}
-
-// A function to draw ellipses over the detected keypoints
-function drawKeypoints()  {
-  // Loop through all the poses detected
-  for (let i = 0; i < poses.length; i++) {
-    // For each pose detected, loop through all the keypoints
-    for (let j = 0; j < poses[i].pose.keypoints.length; j++) {
-      // A keypoint is an object describing a body part (like rightArm or leftShoulder)
-      let keypoint = poses[i].pose.keypoints[j];
-      // Only draw an ellipse is the pose probability is bigger than 0.2
-      if (keypoint.score > 0.2) {
-        fill(255, 0, 0);
-        noStroke();
-        ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
-      }
-    }
+  image(video, 0, 0, height, 480);
+  for (let i = 0; i < objects.length; i++) {
+    noStroke();
+    fill(0, 255, 0);
+    text(objects[i].className, objects[i].x*width, objects[i].y*height - 5);
+    noFill();
+    strokeWeight(4);
+    stroke(0,255, 0);
+    rect(objects[i].x*width, objects[i].y*height, objects[i].w*width, objects[i].h*height);
   }
 }
 
-// A function to draw the skeletons
-function drawSkeleton() {
-  // Loop through all the skeletons detected
-  for (let i = 0; i < poses.length; i++) {
-    // For every skeleton, loop through all body connections
-    for (let j = 0; j < poses[i].skeleton.length; j++) {
-      let partA = poses[i].skeleton[j][0];
-      let partB = poses[i].skeleton[j][1];
-      stroke(255, 0, 0);
-      line(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
-    }
-  }
+function startDetecting() {
+  status.html('Model loaded!');
+  detect();
+}
+
+function detect() {
+  yolo.detect(function(err, results){
+	if (err) {
+		console.error(err);
+	}
+	  else {
+    objects = results;
+    detect();
+	  } 
+  });
 }
