@@ -31,11 +31,11 @@ function gotResults(error, results) {
   if (results ) {
 
 	    voice.speak("Hi" + results);
-	  	voice.stop();
 	  
 	}
 	  
 }
+	voice.stop();
     
     classifier.classify(gotResults);
 
@@ -97,10 +97,7 @@ function setupButtons() {
 	predictButton.mousePressed(function() {
 	classifier.classify(gotResults);
 });
-	stopButton = createButton("Stop").id("stop").class("button");
-	stopButton.mousePressed(function() {
-		toggle = true;
-	})
+	
 }
 
 
