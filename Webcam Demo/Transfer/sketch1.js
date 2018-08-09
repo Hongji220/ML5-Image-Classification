@@ -30,7 +30,9 @@ function gotResults(error, results) {
     label = results;
   if (results) {
 	  if (!(results == "empty")) {
-	    voice.speak("Hi" + results);}
+	    voice.speak("Hi" + results);
+		  break
+	  }
 	}
 	  
 }
