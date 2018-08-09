@@ -27,10 +27,10 @@ function gotResults(error, results) {
     label = results;
   if (results) {
 		if (results == "hongji"){
-			let voice = new P5.Speech(); // speech synthesis object
+			let voice = new p5.Speech(); // speech synthesis object
 			voice.speak('Hi Hong Ji!'); // say something 
 		} else if (results == "justin") {
-			let voice = new P5.Speech(); // speech synthesis object
+			let voice = new p5.Speech(); // speech synthesis object
 			voice.speak('Hi Justin! '); // say something 
 		}
 	}
