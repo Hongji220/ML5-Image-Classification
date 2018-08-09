@@ -5,8 +5,10 @@ let classifier; // This will be the classifier using the retrained Model.
 let loss;
 let personImages1 =0;
 let personImages2 =0;
+let personImages3 =0;
 let buttonA;
 let buttonB;
+let buttonC;
 let trainButton;
 let predictButton;
 let voice;
@@ -26,10 +28,11 @@ function gotResults(error, results) {
   } else {
     //console.log(results);
     label = results;
-  if (results) {
+  if (results) 
+	  if (!(results == "empty")) {}
 	    voice.speak("Hi" + results);
-	  
 	}
+	  
 }
     
     classifier.classify(gotResults);
@@ -51,6 +54,7 @@ function setup() {
   
   createP("0 Images [Hong Ji] <br>").id("amount");
   createP("0 Images [Justin]<br>").id("amount1");
+  createP("0 Images [Empty Room]<br>").id("amount2");
   voice = new p5.Speech();
   voice.speak("Justin is very funny! HAHAHAHAH")
   
@@ -74,6 +78,12 @@ function setupButtons() {
 	buttonB.mousePressed(function() {
 		classifier.addImage('Justin');
 		select("#amount1").html(++personImages2 + " Images [Justin]");
+	});
+	
+	buttonC = createButton("Empty").class("button");
+	buttonC.mousePressed(function() {
+		classifier.addImage('empty');
+		select("#amount2").html(++personImages3 + " Images [Empty Room]");
 	});
 	
 	trainButton = createButton("Train").class("button");
