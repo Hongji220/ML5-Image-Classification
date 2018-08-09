@@ -92,6 +92,7 @@ function setupButtons() {
 	
 	predictButton = createButton("Predict").id("predictButton").class("button");
 	predictButton.mousePressed(function() {
+	voice.setVolume(10);
 	classifier.classify(gotResults);
 });
 	stopButton = createButton("Stop").id("stop").class("button");
