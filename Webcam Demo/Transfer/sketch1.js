@@ -31,7 +31,7 @@ function gotResults(error, results) {
   if (results) {
 	  if (!(results == "empty")) {
 	    voice.speak("Hi" + results);
-		  break
+		 results = "empty";
 	  }
 	}
 	  
