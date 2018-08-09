@@ -26,15 +26,14 @@ function gotResults(error, results) {
     //console.log(results);
     label = results;
   if (results) {
-	results.changed(function(results){
 		if (results == "hongji"){
 			let voice = new P5.Speech(); // speech synthesis object
-			voice.speak('Hi Hong Ji! Welcome Back.'); // say something 
+			voice.speak('Hi Hong Ji!'); // say something 
 		} else if (results == "justin") {
 			let voice = new P5.Speech(); // speech synthesis object
-			voice.speak('Hi Hong Ji! Welcome Back.'); // say something 
+			voice.speak('Hi Justin! '); // say something 
 		}
-	})
+	}
 }
     
     classifier.classify(gotResults);
