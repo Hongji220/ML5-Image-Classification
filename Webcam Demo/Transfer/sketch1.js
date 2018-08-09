@@ -7,6 +7,8 @@ let personImages1 =0;
 let personImages2 =0;
 let buttonA;
 let buttonB;
+let stopButton;
+let toggle;
 let trainButton;
 let predictButton;
 let voice;
@@ -26,7 +28,7 @@ function gotResults(error, results) {
   } else {
     //console.log(results);
     label = results;
-  if (results) {
+  if (results && !toggle) {
 
 	    voice.speak("Hi" + results);
 	  
@@ -94,6 +96,10 @@ function setupButtons() {
 	predictButton.mousePressed(function() {
 	classifier.classify(gotResults);
 });
+	stopButton = createButton("Stop").id("stop").class("button");
+	stopButton.mousePressed(function() {
+		toggle = true;
+	})
 }
 
 
