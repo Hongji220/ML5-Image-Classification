@@ -9,6 +9,7 @@ let buttonA;
 let buttonB;
 let trainButton;
 let predictButton;
+let voice;
 
 
 
@@ -26,7 +27,6 @@ function gotResults(error, results) {
     //console.log(results);
     label = results;
   if (results) {
-		let voice = new p5.Speech();
 	    voice.speak("Hi" + results);
 	  
 	}
@@ -51,8 +51,8 @@ function setup() {
   
   createP("0 Images [Hong Ji] <br>").id("amount");
   createP("0 Images [Justin]<br>").id("amount1");
-  let voice1 = new p5.Speech();
-  voice1.speak("Justin is very funny! HAHAHAHAH")
+  voice = new p5.Speech();
+  voice.speak("Justin is very funny! HAHAHAHAH")
   
   setupButtons();
   
