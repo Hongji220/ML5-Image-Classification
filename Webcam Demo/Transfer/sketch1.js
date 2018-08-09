@@ -26,8 +26,15 @@ function gotResults(error, results) {
     //console.log(results);
     label = results;
   if (results) {
-	let voice = new p5.Speech();
-	voice.speak('Hi Justin! Welcome back.')
+	results.changed(function(results){
+		if (results == "hongji"){
+			let voice = new P5.Speech(); // speech synthesis object
+			voice.speak('Hi Hong Ji! Welcome Back.'); // say something 
+		} else if (results == "justin") {
+			let voice = new P5.Speech(); // speech synthesis object
+			voice.speak('Hi Hong Ji! Welcome Back.'); // say something 
+		}
+	})
 }
     
     classifier.classify(gotResults);
@@ -47,8 +54,8 @@ function setup() {
 // Create a new classifier using those Features and link it to the video
   classifier = featureExtractor.classification(video, function() {console.log("Video Ready!")})
   
-  createP("0 Images [Person 1] <br>").id("amount");
-  createP("0 Images [Person 2]<br>").id("amount1");
+  createP("0 Images [Hong Ji] <br>").id("amount");
+  createP("0 Images [Justin]<br>").id("amount1");
   
   setupButtons();
   
@@ -60,16 +67,16 @@ function setup() {
 //Creating new buttons when j
 function setupButtons() {
 	
-	buttonA = createButton("The first Person").class("button");
+	buttonA = createButton("Hong Ji").class("button");
 	buttonA.mousePressed(function() {
-		classifier.addImage('Person1');
-		select("#amount").html(++personImages1 + " Images [Person 1]");
+		classifier.addImage('hongji');
+		select("#amount").html(++personImages1 + " Images [Hong Ji]");
 	})
 	
-	buttonB = createButton("\nThe Second Person").class("button");
+	buttonB = createButton("Justin").class("button");
 	buttonB.mousePressed(function() {
-		classifier.addImage('Person2');
-		select("#amount1").html(++personImages2 + " Images [Person 2]");
+		classifier.addImage('justin');
+		select("#amount1").html(++personImages2 + " Images [Justin]");
 	});
 	
 	trainButton = createButton("Train").class("button");
