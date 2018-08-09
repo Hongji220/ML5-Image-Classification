@@ -25,7 +25,7 @@ function gotResults(error, results) {
   } else {
     //console.log(results);
     label = results;
-if (result) {
+  if (results) {
 	let voice = new p5.Speech();
 	voice.speak('Hi Justin! Welcome back.')
 }
