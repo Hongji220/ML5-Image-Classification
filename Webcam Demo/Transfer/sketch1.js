@@ -51,6 +51,8 @@ function setup() {
   
   createP("0 Images [Hong Ji] <br>").id("amount");
   createP("0 Images [Justin]<br>").id("amount1");
+  let voice1 = new p5.Speech();
+  voice1.speak("Justin is very funny! HAHAHAHAH")
   
   setupButtons();
   
@@ -64,13 +66,13 @@ function setupButtons() {
 	
 	buttonA = createButton("Hong Ji").class("button");
 	buttonA.mousePressed(function() {
-		classifier.addImage('hongji');
+		classifier.addImage('Hong Ji');
 		select("#amount").html(++personImages1 + " Images [Hong Ji]");
 	})
 	
 	buttonB = createButton("Justin").class("button");
 	buttonB.mousePressed(function() {
-		classifier.addImage('justin');
+		classifier.addImage('Justin');
 		select("#amount1").html(++personImages2 + " Images [Justin]");
 	});
 	
