@@ -26,13 +26,8 @@ function gotResults(error, results) {
     //console.log(results);
     label = results;
   if (results) {
-		if (results == "hongji"){
-			let voice = new p5.Speech(); // speech synthesis object
-			voice.speak('Hi Hong Ji!'); // say something 
-		} else if (results == "justin") {
-			let voice = new p5.Speech(); // speech synthesis object
-			voice.speak('Hi Justin! '); // say something 
-		}
+		let voice = p5.Speech();
+	    voice.speak("Hi" + results);
 	}
 }
     
