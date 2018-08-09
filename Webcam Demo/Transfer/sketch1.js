@@ -96,7 +96,7 @@ function setupButtons() {
 });
 	stopButton = createButton("Stop").id("stop").class("button");
 	stopButton.mousePressed(function() {
-		voice.stop()
+		voice.setVolume(0);
 	  
 	})
 }
