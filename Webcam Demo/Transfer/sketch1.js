@@ -28,9 +28,9 @@ function gotResults(error, results) {
   } else {
     //console.log(results);
     label = results;
-  if (results) 
-	  if (!(results == "empty")) {}
-	    voice.speak("Hi" + results);
+  if (results) {
+	  if (!(results == "empty")) {
+	    voice.speak("Hi" + results);}
 	}
 	  
 }
