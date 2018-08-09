@@ -28,9 +28,10 @@ function gotResults(error, results) {
   } else {
     //console.log(results);
     label = results;
-  if (results && !toggle) {
+  if (results ) {
 
 	    voice.speak("Hi" + results);
+	  	voice.stop();
 	  
 	}
 	  
