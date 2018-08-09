@@ -26,8 +26,9 @@ function gotResults(error, results) {
     //console.log(results);
     label = results;
   if (results) {
-		let voice = p5.Speech();
+		let voice = new p5.Speech();
 	    voice.speak("Hi" + results);
+	  
 	}
 }
     
