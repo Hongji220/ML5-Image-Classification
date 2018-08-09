@@ -25,6 +25,10 @@ function gotResults(error, results) {
   } else {
     //console.log(results);
     label = results;
+if (result) {
+	let voice = new p5.Speech();
+	voice.speak('Hi Justin! Welcome back.')
+}
     
     classifier.classify(gotResults);
 
@@ -43,8 +47,8 @@ function setup() {
 // Create a new classifier using those Features and link it to the video
   classifier = featureExtractor.classification(video, function() {console.log("Video Ready!")})
   
-  createP("0 Images").id("amount");
-  createP("0 Images").id("amount1");
+  createP("0 Images [Person 1] <br>").id("amount");
+  createP("0 Images [Person 2]<br>").id("amount1");
   
   setupButtons();
   
@@ -56,19 +60,19 @@ function setup() {
 //Creating new buttons when j
 function setupButtons() {
 	
-	buttonA = createButton("The first Person");
+	buttonA = createButton("The first Person").class("button");
 	buttonA.mousePressed(function() {
 		classifier.addImage('Person1');
 		select("#amount").html(++personImages1 + " Images [Person 1]");
 	})
 	
-	buttonB = createButton("\nThe Second Person")
+	buttonB = createButton("\nThe Second Person").class("button");
 	buttonB.mousePressed(function() {
 		classifier.addImage('Person2');
 		select("#amount1").html(++personImages2 + " Images [Person 2]");
 	});
 	
-	trainButton = createButton("Train");
+	trainButton = createButton("Train").class("button");
 	trainButton.mousePressed(function() {
 		classifier.train(function(lossValue){
 			if (lossValue) {
@@ -80,7 +84,7 @@ function setupButtons() {
 						 }
 	});});
 	
-	predictButton = createButton("Predict").id("predictButton");
+	predictButton = createButton("Predict").id("predictButton").class("button");
 	predictButton.mousePressed(function() {
 	classifier.classify(gotResults);
 });
